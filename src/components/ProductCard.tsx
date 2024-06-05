@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
-import { addItem } from "../slices/CartSlice";
+import { addItem, removeItem } from "../slices/CartSlice";
 import { Product } from "../slices/ProductsSlice";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -40,13 +40,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         "favoritedProducts",
         JSON.stringify(updatedFavorites)
       );
+      // Удаляем товар из корзины
+      dispatch(removeItem(product.id));
     } else {
       favoritedProducts.push(product.id);
       localStorage.setItem(
         "favoritedProducts",
         JSON.stringify(favoritedProducts)
       );
-      // Add item to cart
+      // Добавляем товар в корзину
       dispatch(addItem({ ...product, quantity: 1 }));
     }
   };
