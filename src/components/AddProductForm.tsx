@@ -1,4 +1,3 @@
-// src/components/AddProductForm.tsx
 "use client";
 
 import { useState } from "react";
