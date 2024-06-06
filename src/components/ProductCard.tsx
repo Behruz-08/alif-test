@@ -55,55 +55,60 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   };
 
   return (
+
     <Card
-    sx={{
-      minWidth: 300,
-      minHeight:600,
+  sx={{
+    minWidth: 300,
+    minHeight: 600,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "space-between", // align items at the beginning and end of the container
+    borderRadius: "1rem",
+    position: "relative", // ensure the icons stay at the bottom
+  }}
+  
+>
+  <CardMedia
+    component="img"
+    sx={{ width: "70%", height: 300, objectFit: "cover", padding: "1rem" }}
+    image={product.image}
+    alt={product.title}
+  />
+
+  <Box 
+   sx={{marginBottom: "4rem" }}
+   >
+    <CardContent>
+      <Typography variant="h6">{product.title}</Typography>
+      <Typography>${product.price}</Typography>
+      <br />
+      <Typography>{product.category}</Typography>
+    </CardContent>
+  </Box>
+
+  <div
+    style={{
       display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      borderRadius:"1rem"
+      justifyContent: "center", 
+      alignItems: "flex-end", 
+      width: "100%",
+      position: "absolute",
+      bottom: "1rem",
     }}
-    >
-
-<CardMedia
-        component="img"
-        sx={{ width: "70%", height: 300, objectFit: "cover" , padding:"1rem"}}
-        image={product.image}
-        alt={product.title}
-      />
-
-
-
-      <Box>
-        <CardContent>
-       
-          <Typography variant="h6">{product.title}</Typography>
-          <Typography>${product.price}</Typography>
-          <Typography>{product.category}</Typography>
-     
-
-        </CardContent>
-      </Box>
-      <Box
-        sx={{
-          position:"relative",
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          padding: "8px",
-         
-        }}
-      >
-        <IconButton  onClick={handleFavoriteClick}>
-          {isFavorited ? (
-            <FavoriteIcon color="error" />
-          ) : (
-            <FavoriteBorderRoundedIcon />
-          )}
-        </IconButton>
-      </Box>
-    </Card>
+   
+  >
+    <Box>
+      <IconButton onClick={handleFavoriteClick}>
+        {isFavorited ? (
+          <FavoriteIcon color="error" sx={{ width: "50px", height: "50px" }}  />
+        ) : (
+          <FavoriteBorderRoundedIcon sx={{ width: "35px", height: "35px", transition:"all easy 1.2" }} />
+        )}
+      </IconButton>
+    </Box>
+  </div>
+</Card>
   );
 };
 

@@ -30,11 +30,12 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "1rem",
-        marginBottom: "2rem",
+       flexDirection:"column",
+    marginTop:"2rem",
+        width:"30rem",
+        gap:"2rem"
       }}
+    
     >
       <FormControl>
         <TextField
@@ -50,7 +51,7 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           onChange={(e) => setPrice(e.target.value)}
         />
       </FormControl>
-      <FormControl sx={{ minWidth: 150, marginLeft: 1 }}>
+      <FormControl sx={{ minWidth: 150, }}>
         <InputLabel>Категории</InputLabel>
         <Select value={category} onChange={(e) => setCategory(e.target.value)}>
           <MenuItem value="electronics">Электроника</MenuItem>
@@ -59,11 +60,14 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           <MenuItem value="women's clothing">Женская категория</MenuItem>
         </Select>
       </FormControl>
-      <SearchRoundedIcon
+      {/* <SearchRoundedIcon
         fontSize="large"
         sx={{ color: lightBlue[800], m: 1 }}
         onClick={handleFilter}
-      />
+      /> */}
+      <Button type="button" onClick={handleFilter} variant="contained" color="secondary">
+        Поиск товара
+      </Button>
     </div>
   );
 };

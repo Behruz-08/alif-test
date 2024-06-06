@@ -10,6 +10,8 @@ import ProductCard from "../components/ProductCard";
 import AddProductForm from "../components/AddProductForm";
 import { Container, Grid, Pagination, Box, Typography, CircularProgress } from "@mui/material";
 import Filter from "@/components/filter";
+import { light } from "@mui/material/styles/createPalette";
+import { lightBlue } from "@mui/material/colors";
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
@@ -59,11 +61,20 @@ export default function Home() {
 
   return (
     <Container>
-      <Typography variant="h4" sx={{ marginY: 4 }}>
+      <Typography variant="h3" sx={{ marginY: 4, marginX: 6, color:lightBlue[300] }}>
         Каталог товаров
       </Typography>
+      <div style={{
+        display:"flex",
+  
+       justifyContent:"space-between",
+        // alignItems:"center",
+
+        }}>
+
       <Filter onFilter={handleFilter} />
       <AddProductForm />
+      </div>
       <Grid container spacing={3} sx={{ marginY: 4 }}>
         {currentItems.map((product: Product) => (
           <Grid item xs={12} sm={6} md={4} lg={4} key={product.id}>
