@@ -12,6 +12,7 @@ const AddProductForm: React.FC = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -22,6 +23,7 @@ const AddProductForm: React.FC = () => {
       price: parseFloat(price),
       category,
       description, 
+      image
     };
 
     dispatch(addProduct(newProduct));
@@ -34,6 +36,11 @@ const AddProductForm: React.FC = () => {
   };
 
   return (
+    <div style={{
+      // display:"flex",
+      width:"30rem"
+    }}>
+
     <Box
       component="form"
       onSubmit={handleSubmit}
@@ -64,10 +71,17 @@ const AddProductForm: React.FC = () => {
         onChange={(e) => setDescription(e.target.value)}
         required
       />
+        <TextField
+        label="URL изображения"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+        required
+      />
       <Button type="submit" variant="contained" color="primary">
         Добавить товар
       </Button>
     </Box>
+    </div>
   );
 };
 
