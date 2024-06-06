@@ -1,5 +1,4 @@
-// src/components/AddProductForm.tsx
-"use client";
+'use client'
 
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -12,23 +11,26 @@ const AddProductForm: React.FC = () => {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
     const newProduct = {
-      id: Date.now(), // генерируем уникальный id
+      id: Date.now(), 
       title,
       price: parseFloat(price),
       category,
+      description, 
     };
 
     dispatch(addProduct(newProduct));
 
-    // Очищаем поля формы
+    
     setTitle("");
     setPrice("");
     setCategory("");
+    setDescription("");
   };
 
   return (
@@ -54,6 +56,12 @@ const AddProductForm: React.FC = () => {
         label="Категория"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
+        required
+      />
+      <TextField
+        label="Описание"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
         required
       />
       <Button type="submit" variant="contained" color="primary">

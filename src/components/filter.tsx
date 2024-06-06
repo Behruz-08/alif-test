@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -10,17 +11,19 @@ import {
   InputLabel,
 } from "@mui/material";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import { lightBlue, pink } from "@mui/material/colors";
+import { lightBlue } from "@mui/material/colors";
+
 interface FilterProps {
-  onFilter: (onfilter: { price?: string; category?: string }) => void;
+  onFilter: (filters: { price?: string; category?: string; description?: string }) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ onFilter }) => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleFilter = () => {
-    onFilter({ price, category });
+    onFilter({ price, category, description });
   };
 
   return (
@@ -35,12 +38,19 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
     >
       <FormControl>
         <TextField
-          label="Max Price"
+          label="Описание товара"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </FormControl>
+      <FormControl>
+        <TextField
+          label="Цена"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
       </FormControl>
-      <FormControl sx={{ minWidth: 150 }}>
+      <FormControl sx={{ minWidth: 150, marginLeft: 1 }}>
         <InputLabel>Категории</InputLabel>
         <Select value={category} onChange={(e) => setCategory(e.target.value)}>
           <MenuItem value="electronics">Электроника</MenuItem>
@@ -49,7 +59,6 @@ const Filter: React.FC<FilterProps> = ({ onFilter }) => {
           <MenuItem value="women's clothing">Женская категория</MenuItem>
         </Select>
       </FormControl>
-      {/* <Button onClick={handleFilter}></Button> */}
       <SearchRoundedIcon
         fontSize="large"
         sx={{ color: lightBlue[800], m: 1 }}

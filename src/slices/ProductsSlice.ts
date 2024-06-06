@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -11,8 +12,6 @@ export interface Product {
 
 interface ProductsState {
   items: Product[];
-  [x: string]: any;
-  products: Product[];
   status: "idle" | "loading" | "success" | "failed";
 }
 
@@ -27,18 +26,14 @@ export const fetchProducts = createAsyncThunk(
 const initialState: ProductsState = {
   items: [],
   status: "idle",
-  products: [],
 };
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<Product[]>) => {
-      state.products = action.payload;
-    },
     addProduct: (state, action: PayloadAction<Product>) => {
-      state.products.push(action.payload);
+      state.items.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -55,5 +50,6 @@ const productsSlice = createSlice({
       });
   },
 });
-export const { setProducts, addProduct } = productsSlice.actions;
+
+export const { addProduct } = productsSlice.actions;
 export default productsSlice.reducer;

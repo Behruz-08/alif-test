@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         "favoritedProducts",
         JSON.stringify(updatedFavorites)
       );
-      // Удаляем товар из корзины
+  
       dispatch(removeItem(product.id));
     } else {
       favoritedProducts.push(product.id);
