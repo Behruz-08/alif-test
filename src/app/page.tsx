@@ -24,7 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     setFilteredProducts(items);
-  }, [items]);
+  }, [items,status]);
 
   const handleFilter = (filters: { price?: string; category?: string; description?: string }) => {
     const { price, category, description } = filters;
