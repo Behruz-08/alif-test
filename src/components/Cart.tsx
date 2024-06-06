@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../store';
 import { removeItem, clearCart } from '../slices/CartSlice';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import { red } from '@mui/material/colors';
 const Cart = () => {
   const dispatch = useDispatch<AppDispatch>();
   const items = useSelector((state: RootState) => state.cart.items);
@@ -19,9 +20,9 @@ const Cart = () => {
 
   return (
     <Container>
-      <Typography variant="h4" gutterBottom>Shopping Cart</Typography>
+      <Typography variant="h4" gutterBottom>Ваши товари</Typography>
       {items.length === 0 ? (
-        <Typography>Your cart is empty.</Typography>
+        <Typography>Ваша корзина пуста.</Typography>
       ) : (
         <>
           <List>
@@ -32,11 +33,11 @@ const Cart = () => {
                 />
                 {/* <Button onClick={() => handleRemoveItem(item.id)}>Remove</Button> */}
 
-                <DeleteRoundedIcon  onClick={() => handleRemoveItem(item.id)}/>
+                <DeleteRoundedIcon sx={{color:red[500]}} onClick={() => handleRemoveItem(item.id)}/>
               </ListItem>
             ))}
           </List>
-          <Button onClick={handleClearCart}>Clear Cart</Button>
+          <Button onClick={handleClearCart}>Очистит корзину</Button>
         </>
       )}
     </Container>

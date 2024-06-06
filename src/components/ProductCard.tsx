@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, Typography, Box, IconButton } from "@mui/material";
+import { Card, CardContent, Typography, Box, IconButton, CardMedia } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
@@ -8,6 +8,7 @@ import { addItem, removeItem } from "../slices/CartSlice";
 import { Product } from "../slices/ProductsSlice";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+
 
 interface ProductCardProps {
   product: Product;
@@ -55,30 +56,46 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Card
-      sx={{
-        minWidth: 275,
-        minHeight: 240,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
+    sx={{
+      minWidth: 300,
+      minHeight:600,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      borderRadius:"1rem"
+    }}
     >
+
+<CardMedia
+        component="img"
+        sx={{ width: "70%", height: 300, objectFit: "cover" , padding:"1rem"}}
+        image={product.image}
+        alt={product.title}
+      />
+
+
+
       <Box>
         <CardContent>
+       
           <Typography variant="h6">{product.title}</Typography>
           <Typography>${product.price}</Typography>
           <Typography>{product.category}</Typography>
+     
+
         </CardContent>
       </Box>
       <Box
         sx={{
+          position:"relative",
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "center",
           padding: "8px",
+         
         }}
       >
-        <IconButton onClick={handleFavoriteClick}>
+        <IconButton  onClick={handleFavoriteClick}>
           {isFavorited ? (
             <FavoriteIcon color="error" />
           ) : (

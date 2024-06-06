@@ -30,6 +30,8 @@ export default function ProductDetail() {
       <Typography variant="h5">${product.price}</Typography>
       <Typography variant="h6">{product.category}</Typography>
       <Typography>{product.description}</Typography>
+      <Typography>{product.image}</Typography>
+
     </Container>
   );
 }

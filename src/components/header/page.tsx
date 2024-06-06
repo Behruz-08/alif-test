@@ -8,13 +8,13 @@ const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Catalog App
+          Каталог продуктов
         </Typography>
         <Button color="inherit" component={Link} href="/">
           Home
         </Button>
         <Button color="inherit" component={Link} href="/cart">
-          Cart
+        Корзина
         </Button>
       </Toolbar>
     </AppBar>

@@ -1,13 +1,16 @@
 
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { ReactNode } from "react";
 
 export interface Product {
+  image:string;
   id: number;
   title: string;
   price: number;
   category: string;
   description: string;
+ 
 }
 
 interface ProductsState {
